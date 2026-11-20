@@ -1,3 +1,5 @@
+import type { DraftQuestion } from "@/lib/editorial/contracts";
+
 export type StudentProfile = {
   user_id: string;
   alias: string | null;
@@ -31,7 +33,25 @@ export type Database = {
       };
     };
     Views: Record<never, never>;
-    Functions: { request_account_deletion: { Args: never; Returns: string | null } };
+    Functions: {
+      request_account_deletion: { Args: never; Returns: string | null };
+      editorial_access: { Args: never; Returns: string[] };
+      editorial_question_workspace: { Args: { p_version?: string }; Returns: unknown };
+      editorial_question_choices: { Args: never; Returns: unknown };
+      editorial_save_question: {
+        Args: { p_version: string | null; p_revision: number | null; p_draft: DraftQuestion };
+        Returns: string;
+      };
+      editorial_transition_question: {
+        Args: { p_version: string; p_revision: number; p_action: string; p_notes: string | null; p_answer: number | null };
+        Returns: string;
+      };
+      read_published_question: { Args: { p_version: string }; Returns: unknown };
+      report_question: {
+        Args: { p_version: string; p_reason: string; p_notes: string };
+        Returns: undefined;
+      };
+    };
     Enums: Record<never, never>;
     CompositeTypes: Record<never, never>;
   };

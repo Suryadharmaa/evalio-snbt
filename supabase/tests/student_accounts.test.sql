@@ -19,7 +19,9 @@ insert into auth.users (id, email, created_at, raw_user_meta_data) values
 
 select is((select cohort_year::integer from public.profiles where user_id = '00000000-0000-4000-8000-000000000001'), 2028, 'Registration seeds the target year');
 select is((select cohort_year::integer from public.profiles where user_id = '00000000-0000-4000-8000-000000000002'), 2027, 'Invalid metadata cannot break initialization');
-select is((select count(*) from evalio_private.user_roles), 0::bigint, 'Untrusted signup role metadata grants no roles');
+select is((select count(*) from evalio_private.user_roles
+  where user_id in ('00000000-0000-4000-8000-000000000001','00000000-0000-4000-8000-000000000002')),
+  0::bigint, 'Untrusted signup role metadata grants no roles');
 
 set local role anon;
 select throws_ok('select * from public.profiles', '42501', null, 'Anonymous profile reads are denied');
