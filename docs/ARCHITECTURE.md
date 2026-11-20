@@ -60,10 +60,11 @@ The paths are targets; Codex may adapt them for the chosen scaffold while docume
 `profiles(user_id PK -> auth.users, alias?, cohort_year, created_at, delete_requested_at?)`
 `user_consents(id, user_id, policy_version, consent_type, granted_at, revoked_at)`
 `user_roles(user_id, role)` (write-only via privileged admin service)
-`subtests(id, code UNIQUE, name, section)`
-`topics(id, subtest_id, parent_id?, code, name)`
-`exam_blueprints(id, exam_year, version, duration_seconds, source_url, verified_at?, status)`
-`blueprint_sections(id, blueprint_id, subtest_id, question_count, duration_seconds?, ordinal)`
+`subtests(code PK)`
+`topics(blueprint_id, subtest_code, code, parent_code?, name)`
+`exam_blueprints(id, exam_year, version, classification, total_questions, duration_seconds, status, published_at?)`
+`blueprint_sections(blueprint_id, subtest_code, name, category, question_count, duration_seconds?, ordinal)`
+`exam_rule_sources(blueprint_id, url, title, publisher, verified_on)`
 `passages(id, version, content, license_record_id?, status)`
 `questions(id, subtest_id, topic_id, current_version_id, status, content_owner, created_at)`
 `question_versions(id, question_id, stem, passage_version_id?, render_payload, difficulty, version, review_status, license_record_id, created_at, published_at?)`
@@ -90,7 +91,7 @@ The paths are targets; Codex may adapt them for the chosen scaffold while docume
 `entitlements(id, user_id, product, starts_at, ends_at, status, order_id)` (P1)
 `audit_logs(id, actor_id, action, entity, entity_id, at, metadata)` (privileged)
 
-Ensure DB-level foreign keys, unique constraints, `CHECK` on statuses and arithmetic invariants. Never use locally generated user IDs as proof of ownership. Every data migration checked and documented.
+See [Exam blueprints](EXAM_BLUEPRINTS.md) for the implemented blueprint, source, and taxonomy contracts. Ensure DB-level foreign keys, unique constraints, `CHECK` on statuses and arithmetic invariants. Never use locally generated user IDs as proof of ownership. Every data migration checked and documented.
 
 ## 4. Server-side exam contracts
 
