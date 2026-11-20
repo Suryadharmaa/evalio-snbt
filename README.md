@@ -30,6 +30,7 @@ Playwright runs the production build on port 3100 and checks the homepage on des
 - [PRD](docs/PRD.md) defines the product and its release gates.
 - [Architecture](docs/ARCHITECTURE.md) defines the planned data, security and assessment contracts.
 - [Bootstrap notes](docs/BOOTSTRAP.md) describe the implemented structure and third-party skill review.
+- [Student accounts](docs/ACCOUNTS.md) covers isolated Supabase setup, privacy controls, and account deletion.
 - [Design](docs/DESIGN.md) defines the Academic Ambition identity.
 - [Task board](docs/TASKS.md) and [Cloud runbook](docs/CODEX_CLOUD.md) describe ticket ownership and environment setup.
 - [Agent instructions](AGENTS.md) and [.agents/skills/](.agents/skills/) contain repository-specific working guidance.
