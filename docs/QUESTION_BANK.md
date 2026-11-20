@@ -17,7 +17,7 @@ The CMS at `/admin/questions` includes a plain-text preview, draft editing, the 
 
 ## Learner read and report contract
 
-- `GET /api/v1/questions/{versionId}` returns the published stem, passage and ordered choices to a signed-in account. Drafts, in-review versions, and retired versions return 404. No RPC returns a stored key or explanation.
+- `GET /api/v1/questions/{versionId}` returns the published stem, passage and ordered choices to a signed-in account. Drafts, in-review versions, and retired versions return 404. The question-read RPC exposes stems, passages, and choices. [Authenticated practice](PRACTICE.md) retrieves feedback for an individual item after the owner’s answer is committed.
 - `POST /api/v1/questions/{versionId}` accepts a same-origin report with `reason` set to `content`, `answer`, `rendering`, or `other`, plus optional `notes`. The database derives the reporter from the signed session and records at most one report per account and version. Historical retired versions can still be reported.
 - Future selection must use the published status. A later answer-review endpoint will need attempt ownership and submission checks before it can return any key or explanation.
 
@@ -35,4 +35,4 @@ The engineering fixtures cover all seven subtests. They are synthetic and do not
 | Rejected | 0 |
 | Published | 0 |
 
-The 70 independently reviewed items remain an open acceptance criterion. Hosted staging verification remains open. The next ticket is EVAL-005 for authenticated practice and submission-gated explanations.
+The 70 independently reviewed items remain an open acceptance criterion. Hosted staging verification remains open. [Authenticated practice](PRACTICE.md) consumes published content and grants submission-gated explanations.

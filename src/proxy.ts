@@ -9,6 +9,7 @@ export async function proxy(request: NextRequest) {
 
   if (configuration && (pathname === "/reset-password" ||
     pathname === "/dashboard" || pathname.startsWith("/dashboard/") ||
+    pathname === "/practice" || pathname.startsWith("/practice/") ||
     pathname === "/profile" || pathname.startsWith("/profile/") ||
     pathname === "/admin/questions" || pathname.startsWith("/admin/questions/") ||
     pathname.startsWith("/api/v1/questions/"))) {
@@ -38,6 +39,7 @@ export const config = {
     "/auth/confirm",
     "/dashboard/:path*",
     "/profile/:path*",
+    "/practice/:path*",
     "/admin/questions/:path*",
     "/api/v1/questions/:path*",
   ],
