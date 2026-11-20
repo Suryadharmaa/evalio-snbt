@@ -2,45 +2,132 @@
   position: relative;
   isolation: isolate;
   overflow: hidden;
-  min-height: 15rem;
-  aspect-ratio: 6 / 5;
+  width: 100%;
+  aspect-ratio: 1.13;
   border: 1px solid var(--ev-border);
-  border-radius: var(--ev-radius);
-  background-color: var(--ev-surface-lavender);
-  background-image: linear-gradient(to right, #6252e815 1px, transparent 1px),
-    linear-gradient(to bottom, #6252e815 1px, transparent 1px);
-  background-size: 28px 28px;
+  border-radius: 20px;
+  background-color: #e7e0fc;
+  background-image:
+    linear-gradient(to right, #6252e81a 1px, transparent 1px),
+    linear-gradient(to bottom, #6252e81a 1px, transparent 1px);
+  background-position: center;
+  background-size: 8% 9%;
+}
+
+.frame {
+  position: absolute;
+  inset: 5%;
+  border: 1px solid #6252e857;
+  border-radius: 12px;
+}
+
+.frame::before,
+.frame::after {
+  position: absolute;
+  top: 14%;
+  width: 1.45rem;
+  height: 1.45rem;
+  content: "";
+  background-color: #6252e88c;
+  clip-path: polygon(50% 0, 58% 42%, 100% 50%, 58% 58%, 50% 100%, 42% 58%, 0 50%, 42% 42%);
+}
+
+.frame::before {
+  left: 10%;
+}
+
+.frame::after {
+  right: 10%;
+  top: 33%;
+  width: 1rem;
+  height: 1rem;
 }
 
 .arch {
   position: absolute;
-  inset: 14% 20% -12% 20%;
-  border-radius: 50% 50% 0 0 / 44% 44% 0 0;
-  border: 1px solid var(--ev-primary);
-  box-shadow: 0 0 0 12px var(--ev-surface-lavender), 0 0 0 13px #6252e855;
-  background-color: #e7e0ff;
+  inset: 16% 25% 21%;
+  border: 1px solid var(--ev-primary-hover);
+  border-radius: 50% 50% 5% 5% / 38% 38% 4% 4%;
+  box-shadow:
+    0 0 0 0.65rem #e7e0fc,
+    0 0 0 calc(0.65rem + 1px) #6252e870,
+    0 0 0 1.25rem #e7e0fc,
+    0 0 0 calc(1.25rem + 1px) #6252e84d;
+  background-color: #d7cbf9;
 }
 
 .sun {
   position: absolute;
-  top: 28%;
-  left: 50%;
-  width: 17%;
+  top: 26%;
+  left: 43%;
+  width: 14%;
   aspect-ratio: 1;
-  translate: -50%;
-  border: 1px solid #e5cc8f;
+  border: 1px solid #bb8d33;
   border-radius: 50%;
-  background-color: #fbe9bd;
+  background-color: #fae5b5;
+  box-shadow: 0 0 0 0.3rem #fcedc94d;
 }
 
 .steps {
   position: absolute;
-  inset: 51% 9% 0;
+  inset: 49% 16% 11%;
   background-color: var(--ev-ink);
-  background-image: repeating-linear-gradient(to bottom, transparent 0 18%, #ffffff26 18% 19%);
+  background-image: repeating-linear-gradient(to bottom, transparent 0 18.5%, #ffffff36 18.5% 20%);
   clip-path: polygon(
-    38% 0, 62% 0, 62% 19%, 71% 19%, 71% 38%, 80% 38%, 80% 57%,
-    89% 57%, 89% 76%, 100% 76%, 100% 100%, 0 100%, 0 76%, 11% 76%,
-    11% 57%, 20% 57%, 20% 38%, 29% 38%, 29% 19%, 38% 19%
+    39% 0, 61% 0, 61% 20%, 70% 20%, 70% 40%, 79% 40%, 79% 60%,
+    89% 60%, 89% 80%, 100% 80%, 100% 100%, 0 100%, 0 80%, 11% 80%,
+    11% 60%, 21% 60%, 21% 40%, 30% 40%, 30% 20%, 39% 20%
   );
+}
+
+.book {
+  position: absolute;
+  inset: auto 14% 10% auto;
+  width: 20%;
+  aspect-ratio: 1.45;
+  rotate: -9deg;
+}
+
+.book::before,
+.book::after {
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 50%;
+  content: "";
+  border: 1px solid #74629f;
+  border-radius: 12% 29% 16% 8%;
+  background-color: #faf6ed;
+  background-image: repeating-linear-gradient(
+    to bottom,
+    transparent 0 17%,
+    #74629f60 17% 20%
+  );
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 64% 68%;
+  transform: skewY(11deg);
+}
+
+.book::after {
+  inset: 0 0 0 auto;
+  border-radius: 29% 12% 8% 16%;
+  transform: skewY(-11deg);
+}
+
+.externalArrow {
+  position: relative;
+  width: 0.625rem;
+  height: 0.625rem;
+  border-top: 1px solid currentColor;
+  border-right: 1px solid currentColor;
+}
+
+.externalArrow::after {
+  position: absolute;
+  inset: 0.2rem -0.07rem auto auto;
+  width: 0.65rem;
+  height: 1px;
+  rotate: -45deg;
+  content: "";
+  background: currentColor;
 }
