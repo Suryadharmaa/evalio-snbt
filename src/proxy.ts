@@ -9,7 +9,9 @@ export async function proxy(request: NextRequest) {
 
   if (configuration && (pathname === "/reset-password" ||
     pathname === "/dashboard" || pathname.startsWith("/dashboard/") ||
-    pathname === "/profile" || pathname.startsWith("/profile/"))) {
+    pathname === "/profile" || pathname.startsWith("/profile/") ||
+    pathname === "/admin/questions" || pathname.startsWith("/admin/questions/") ||
+    pathname.startsWith("/api/v1/questions/"))) {
     const supabase = createSessionClient(configuration, pathname === "/reset-password", {
       getAll: () => request.cookies.getAll(),
       setAll(entries, headers) {
@@ -36,5 +38,7 @@ export const config = {
     "/auth/confirm",
     "/dashboard/:path*",
     "/profile/:path*",
+    "/admin/questions/:path*",
+    "/api/v1/questions/:path*",
   ],
 };

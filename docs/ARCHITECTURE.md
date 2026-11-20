@@ -65,13 +65,17 @@ The paths are targets; Codex may adapt them for the chosen scaffold while docume
 `exam_blueprints(id, exam_year, version, classification, total_questions, duration_seconds, status, published_at?)`
 `blueprint_sections(blueprint_id, subtest_code, name, category, question_count, duration_seconds?, ordinal)`
 `exam_rule_sources(blueprint_id, url, title, publisher, verified_on)`
-`passages(id, version, content, license_record_id?, status)`
-`questions(id, subtest_id, topic_id, current_version_id, status, content_owner, created_at)`
-`question_versions(id, question_id, stem, passage_version_id?, render_payload, difficulty, version, review_status, license_record_id, created_at, published_at?)`
-`question_choices(id, question_version_id, label, display_order, content)`
-`question_answer_keys(question_version_id, choice_id, protected_explanation)` — **server-only**
-`question_reviews(id, question_version_id, editor_id, reviewer_id, result, notes, reviewed_at)`
-`question_license_records(id, license_type, source_url?, partner_agreement_ref?, license_checked_at)`
+[Question bank](QUESTION_BANK.md) tables live in `evalio_private`.
+
+- `passages(id)` and `passage_versions(id, passage_id, version, body, render_payload, license_id)`
+- `questions(id, created_at)` and `question_versions(id, question_id, version, revision, author_id, blueprint_id, subtest_code, topic_code, passage_version_id?, license_id, format, stem, render_payload, difficulty, tags, status)`
+- `question_options(version_id, position, body)`
+- `question_answer_keys(version_id, correct_position, explanation)`
+- `question_reviews(version_id, revision, reviewer_id, decision, notes, reviewed_at)`
+- `question_license_records(id, kind, owner_name, provenance, agreement_ref?, source_url?)`
+- `question_audit_events(id, version_id, actor_id, event, revision, occurred_at)`
+- `question_reports(version_id, reporter_id, reason, notes, reported_at)`
+
 `practice_sessions(id, user_id, status, started_at, finished_at)`
 `practice_answers(id, practice_session_id, question_version_id, selected_choice_id?, answered_at, correctness)`
 `exam_attempts(id, user_id, blueprint_id, status, started_at, deadline_at, submitted_at?, idempotency_key, result_version)`
