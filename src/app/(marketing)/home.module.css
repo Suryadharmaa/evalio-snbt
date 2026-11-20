@@ -1,0 +1,46 @@
+.illustration {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  min-height: 15rem;
+  aspect-ratio: 6 / 5;
+  border: 1px solid var(--ev-border);
+  border-radius: var(--ev-radius);
+  background-color: var(--ev-surface-lavender);
+  background-image: linear-gradient(to right, #6252e815 1px, transparent 1px),
+    linear-gradient(to bottom, #6252e815 1px, transparent 1px);
+  background-size: 28px 28px;
+}
+
+.arch {
+  position: absolute;
+  inset: 14% 20% -12% 20%;
+  border-radius: 50% 50% 0 0 / 44% 44% 0 0;
+  border: 1px solid var(--ev-primary);
+  box-shadow: 0 0 0 12px var(--ev-surface-lavender), 0 0 0 13px #6252e855;
+  background-color: #e7e0ff;
+}
+
+.sun {
+  position: absolute;
+  top: 28%;
+  left: 50%;
+  width: 17%;
+  aspect-ratio: 1;
+  translate: -50%;
+  border: 1px solid #e5cc8f;
+  border-radius: 50%;
+  background-color: #fbe9bd;
+}
+
+.steps {
+  position: absolute;
+  inset: 51% 9% 0;
+  background-color: var(--ev-ink);
+  background-image: repeating-linear-gradient(to bottom, transparent 0 18%, #ffffff26 18% 19%);
+  clip-path: polygon(
+    38% 0, 62% 0, 62% 19%, 71% 19%, 71% 38%, 80% 38%, 80% 57%,
+    89% 57%, 89% 76%, 100% 76%, 100% 100%, 0 100%, 0 76%, 11% 76%,
+    11% 57%, 20% 57%, 20% 38%, 29% 38%, 29% 19%, 38% 19%
+  );
+}
