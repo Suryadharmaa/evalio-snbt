@@ -1,0 +1,31 @@
+:root {
+  --ev-ink: #24173f;
+  --ev-primary: #6252e8;
+  --ev-primary-hover: #503dd5;
+  --ev-bg: #faf9fd;
+  --ev-surface: #ffffff;
+  --ev-surface-lavender: #f3f0ff;
+  --ev-border: #dfdaed;
+  --ev-text-muted: #665d75;
+  --ev-success: #167a51;
+  --ev-warning: #a56916;
+  --ev-danger: #b33747;
+  --ev-radius: 12px;
+}
+
+@theme inline {
+  --color-ink: var(--ev-ink);
+  --color-primary: var(--ev-primary);
+  --color-primary-hover: var(--ev-primary-hover);
+  --color-paper: var(--ev-bg);
+  --color-surface: var(--ev-surface);
+  --color-lavender: var(--ev-surface-lavender);
+  --color-line: var(--ev-border);
+  --color-muted: var(--ev-text-muted);
+  --color-success: var(--ev-success);
+  --color-warning: var(--ev-warning);
+  --color-danger: var(--ev-danger);
+  --radius-panel: var(--ev-radius);
+  --font-sans: system-ui, sans-serif;
+  --font-display: Georgia, "Times New Roman", serif;
+}
