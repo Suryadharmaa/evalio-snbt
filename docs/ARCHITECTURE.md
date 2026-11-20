@@ -26,7 +26,7 @@ src/
   app/(marketing)/page.tsx
   app/(auth)/auth/page.tsx
   app/(app)/dashboard/page.tsx
-  app/(app)/practice/...
+  app/(account)/(student)/practice/...
   app/(app)/tryout/...
   app/(app)/results/...
   app/(app)/ptn/...
@@ -76,8 +76,8 @@ The paths are targets; Codex may adapt them for the chosen scaffold while docume
 - `question_audit_events(id, version_id, actor_id, event, revision, occurred_at)`
 - `question_reports(version_id, reporter_id, reason, notes, reported_at)`
 
-`practice_sessions(id, user_id, status, started_at, finished_at)`
-`practice_answers(id, practice_session_id, question_version_id, selected_choice_id?, answered_at, correctness)`
+[Practice](PRACTICE.md) uses private `practice_sessions`, `practice_items`, `practice_answers`, and `practice_results` tables. Session items pin an ordered set of distinct question versions. Answers and calculated results are immutable.
+
 `exam_attempts(id, user_id, blueprint_id, status, started_at, deadline_at, submitted_at?, idempotency_key, result_version)`
 `attempt_items(id, attempt_id, question_version_id, item_order, choice_shuffle_seed)`
 `attempt_answers(id, attempt_id, attempt_item_id, selected_choice_id?, updated_at, UNIQUE(attempt_item_id))`
@@ -99,8 +99,7 @@ See [Exam blueprints](EXAM_BLUEPRINTS.md) for the implemented blueprint, source,
 
 ## 4. Server-side exam contracts
 
-- `POST /api/v1/practice`: authenticated and rate-limited create practice session with selected published items.
-- `POST /api/v1/practice/{id}/answers`: atomically accept answer; server returns feedback after answer is committed and policy allows it.
+- [Practice](PRACTICE.md) uses authenticated Next.js Server Actions and owner-scoped Supabase operations for discovery, session creation, answer submission, post-commit feedback, and results.
 - `POST /api/v1/tryout`: server creates immutable attempt snapshot based on published blueprint and available, distinct item versions.
 - `PATCH /api/v1/tryout/{id}/answers/{itemId}`: owner-only, idempotent upsert, attempts `in_progress` only and deadline enforced.
 - `POST /api/v1/tryout/{id}/submit`: transaction; exactly once finalization; returns existing result on duplicate retries.

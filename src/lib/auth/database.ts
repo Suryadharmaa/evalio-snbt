@@ -34,6 +34,15 @@ export type Database = {
     };
     Views: Record<never, never>;
     Functions: {
+      practice_catalog: { Args: never; Returns: unknown };
+      practice_start: {
+        Args: { p_blueprint: string; p_subtest: string; p_topic: string | null; p_count: number; p_request: string };
+        Returns: string;
+      };
+      practice_session: { Args: { p_session: string; p_position?: number }; Returns: unknown };
+      practice_answer: { Args: { p_session: string; p_position: number; p_choice: number }; Returns: undefined };
+      practice_finish: { Args: { p_session: string }; Returns: undefined };
+      practice_history: { Args: never; Returns: unknown };
       request_account_deletion: { Args: never; Returns: string | null };
       editorial_access: { Args: never; Returns: string[] };
       editorial_question_workspace: { Args: { p_version?: string }; Returns: unknown };

@@ -33,6 +33,7 @@ Playwright runs the production build on port 3100 and checks the homepage on des
 - [Student accounts](docs/ACCOUNTS.md) covers isolated Supabase setup, privacy controls, and account deletion.
 - [Exam blueprints](docs/EXAM_BLUEPRINTS.md) covers the historical reference, public API, and publication rules.
 - [Question bank](docs/QUESTION_BANK.md) covers editorial roles, publication, and answer-key isolation.
+- [Authenticated practice](docs/PRACTICE.md) covers session flow, server contracts, and isolated verification.
 - [Design](docs/DESIGN.md) defines the Academic Ambition identity.
 - [Task board](docs/TASKS.md) and [Cloud runbook](docs/CODEX_CLOUD.md) describe ticket ownership and environment setup.
 - [Agent instructions](AGENTS.md) and [.agents/skills/](.agents/skills/) contain repository-specific working guidance.
