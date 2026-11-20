@@ -1,9 +1,9 @@
-import { render, screen } from "@testing-library/react";
+import { render, screen, within } from "@testing-library/react";
 import { expect, test } from "vitest";
 import MarketingLayout from "@/app/(marketing)/layout";
 import HomePage from "@/app/(marketing)/page";
 
-test("the homepage provides a single main landmark and working in-page link targets", () => {
+test("the landing page presents available preview links and a historical subtest list", () => {
   render(
     <MarketingLayout>
       <HomePage />
@@ -16,14 +16,20 @@ test("the homepage provides a single main landmark and working in-page link targ
     "#konten-utama",
   );
   expect(screen.getByRole("heading", { level: 1 })).toHaveTextContent(
-    "Dari ruang belajar ke kampus impian.",
+    "Belajar UTBK lebih terarah. Pilih PTN lebih terencana.",
   );
-  expect(screen.getByRole("link", { name: "Kenali Evalio" })).toHaveAttribute(
-    "href",
-    "#tentang-evalio",
-  );
-  expect(screen.getByRole("region", { name: "Yang sedang disiapkan" })).toHaveAttribute(
-    "id",
-    "tentang-evalio",
-  );
+
+  const diagnosticLinks = screen.getAllByRole("link", { name: "Coba Diagnostik Gratis" });
+  expect(diagnosticLinks).toHaveLength(2);
+  for (const link of diagnosticLinks) {
+    expect(link).toHaveAttribute("href", "#diagnostik");
+    expect(link).toHaveAccessibleDescription(/Segera hadir/);
+  }
+
+  const preview = screen.getByRole("region", { name: "Seperti apa belajar di Evalio?" });
+  expect(within(preview).getAllByText("Ilustrasi · Segera hadir")).toHaveLength(3);
+
+  const subtests = screen.getByRole("region", { name: "Tujuh subtes SNBT" });
+  expect(within(subtests).getAllByRole("listitem")).toHaveLength(7);
+  expect(subtests).toHaveTextContent(/SNBT 2026.*SNBT 2027 masih menunggu konfirmasi resmi/);
 });
